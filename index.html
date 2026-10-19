@@ -1,39 +1,257 @@
 
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IELTS Library | ByAziret</title>
+    <meta name="theme-color" content="#080b14">
+    <meta name="description" content="A detailed English grammar and IELTS reference library with lessons, examples, vocabulary, and practice strategies.">
+    <title>IELTS Library — English Knowledge Base</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
-        <h1>IELTS<span>LIBRARY</span></h1>
-        <p>Your ultimate IELTS preparation hub</p>
-        <input type="text" id="search" placeholder="🔍 Search IELTS topics...">
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="topbar">
+        <a href="#" class="brand">
+            <span class="brand-symbol">I<span>.</span></span>
+            <span class="brand-name">IELTS<span>LIBRARY</span></span>
+        </a>
+
+        <nav class="top-nav">
+            <a href="#librarySection">Library</a>
+            <a href="#studySection">Study guide</a>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch theme" aria-pressed="false">
+                <span class="theme-icon" id="themeIcon">☾</span>
+                <span class="theme-label" id="themeLabel">Dark mode</span>
+            </button>
+        </nav>
     </header>
 
-    <nav>
-        <button onclick="showCategory('All')">All</button>
-        <button onclick="showCategory('Grammar')">Grammar</button>
-        <button onclick="showCategory('Vocabulary')">Vocabulary</button>
-        <button onclick="showCategory('Writing')">Writing</button>
-        <button onclick="showCategory('Speaking')">Speaking</button>
-        <button onclick="showCategory('Reading')">Reading</button>
-        <button onclick="showCategory('Listening')">Listening</button>
-    </nav>
-
     <main>
-        <h2>IELTS Knowledge Base</h2>
-        <div id="library" class="library"></div>
+        <section class="hero">
+            <div class="hero-copy">
+                <div class="eyebrow"><span class="status-dot"></span> ENGLISH KNOWLEDGE BASE / 2026</div>
+                <h1>Understand English.<br><span>Master the details.</span></h1>
+                <p class="hero-description">
+                    Your personal reference book for English grammar, vocabulary,
+                    and every IELTS skill. Learn the rules, understand the examples,
+                    and apply your knowledge with confidence.
+                </p>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="#librarySection">Explore library <span>↗</span></a>
+                    <a class="button button-secondary" href="#studySection">Study guide</a>
+                </div>
+                <div class="hero-meta">
+                    <span><span class="meta-dot"></span> Detailed explanations</span>
+                    <span><span class="meta-dot"></span> Practical examples</span>
+                    <span><span class="meta-dot"></span> IELTS-focused</span>
+                </div>
+            </div>
+
+            <div class="hero-visual" aria-label="English learning dashboard illustration">
+                <div class="orbit orbit-one"></div>
+                <div class="orbit orbit-two"></div>
+                <div class="orbit orbit-three"></div>
+                <div class="visual-core">
+                    <span class="core-small">YOUR KNOWLEDGE</span>
+                    <span class="core-title">EN<span>+</span></span>
+                    <span class="core-bottom">LEARN / APPLY / GROW</span>
+                </div>
+                <div class="floating-card floating-top">
+                    <span class="floating-icon cyan-icon">Aa</span>
+                    <span><b>Grammar</b><small>Build the foundation</small></span>
+                </div>
+                <div class="floating-card floating-bottom">
+                    <span class="floating-icon purple-icon">✳</span>
+                    <span><b>IELTS Skills</b><small>Learn with purpose</small></span>
+                </div>
+                <span class="visual-coordinate">SYSTEM / 001</span>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <article class="stat-card">
+                <span class="stat-label">TOTAL TOPICS</span>
+                <strong id="topicCount">00</strong>
+                <span class="stat-foot">Your knowledge base</span>
+            </article>
+            <article class="stat-card">
+                <span class="stat-label">CATEGORIES</span>
+                <strong id="categoryCount">00</strong>
+                <span class="stat-foot">Areas of English</span>
+            </article>
+            <article class="stat-card">
+                <span class="stat-label">COMPLETED</span>
+                <strong id="completedCount">00</strong>
+                <span class="stat-foot">Lessons you've finished</span>
+            </article>
+            <article class="stat-card">
+                <span class="stat-label">BOOKMARKED</span>
+                <strong id="bookmarkCount">00</strong>
+                <span class="stat-foot">Saved for later</span>
+            </article>
+        </section>
+
+        <section class="library-section section" id="librarySection">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">01 / REFERENCE DATABASE</div>
+                    <h2>Your learning <span>library.</span></h2>
+                    <p>Search a topic, select a category, and open a lesson.</p>
+                </div>
+                <div class="result-indicator">
+                    <span class="status-dot"></span>
+                    <span id="resultCount">0 topics found</span>
+                </div>
+            </div>
+
+            <div class="search-panel">
+                <label class="search-box" for="search">
+                    <span class="search-icon">⌕</span>
+                    <input id="search" type="search" placeholder="Search grammar, vocabulary, IELTS strategies..." autocomplete="off">
+                    <kbd>SEARCH</kbd>
+                </label>
+                <div class="search-controls">
+                    <label class="select-wrap">
+                        <span class="sr-only">Sort lessons</span>
+                        <select id="sortSelect">
+                            <option value="default">Default order</option>
+                            <option value="az">Title: A–Z</option>
+                            <option value="za">Title: Z–A</option>
+                        </select>
+                    </label>
+                    <button class="button button-secondary small-button" id="savedFilter" type="button">☆ Saved lessons</button>
+                    <button class="button button-secondary small-button" id="resetFilters" type="button">Reset</button>
+                </div>
+            </div>
+
+            <div class="category-list" id="categoryFilters" aria-label="Filter by category">
+                <button class="category-chip active" data-category="All" type="button">All topics</button>
+            </div>
+
+            <div class="active-filter-line">
+                <span id="activeFilterLabel">SHOWING ALL TOPICS</span>
+                <span class="line"></span>
+            </div>
+
+            <div class="library-grid" id="library" aria-live="polite"></div>
+
+            <div class="empty-state hidden" id="emptyState">
+                <span class="empty-symbol">⌕</span>
+                <h3>No lessons found</h3>
+                <p>Try a different keyword or reset the filters.</p>
+                <button class="button button-primary" id="emptyReset" type="button">Clear filters</button>
+            </div>
+        </section>
+
+        <section class="study-section section" id="studySection">
+            <div class="section-heading">
+                <div>
+                    <div class="eyebrow">02 / YOUR LEARNING SYSTEM</div>
+                    <h2>Study with <span>purpose.</span></h2>
+                    <p>A simple method for understanding, remembering, and applying what you learn.</p>
+                </div>
+            </div>
+
+            <div class="study-grid">
+                <article class="study-card">
+                    <span class="study-number">01</span>
+                    <div class="study-icon">⌘</div>
+                    <h3>Understand</h3>
+                    <p>Read the rule, identify when it is used, and compare correct and incorrect examples.</p>
+                    <span class="study-tag">LEARN THE RULE</span>
+                </article>
+                <article class="study-card">
+                    <span class="study-number">02</span>
+                    <div class="study-icon">↗</div>
+                    <h3>Apply</h3>
+                    <p>Create your own sentences and use new vocabulary in IELTS Speaking and Writing.</p>
+                    <span class="study-tag">PRACTISE ACTIVELY</span>
+                </article>
+                <article class="study-card">
+                    <span class="study-number">03</span>
+                    <div class="study-icon">◎</div>
+                    <h3>Review</h3>
+                    <p>Bookmark difficult topics, revisit your mistakes, and mark lessons as completed.</p>
+                    <span class="study-tag">BUILD RETENTION</span>
+                </article>
+            </div>
+
+            <div class="study-note">
+                <span class="note-symbol">✳</span>
+                <div>
+                    <strong>Small steps every day.</strong>
+                    <p>Consistent practice and careful error review are more useful than memorising rules without applying them.</p>
+                </div>
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <p>IELTS LIBRARY © 2026 | Built by Aziret</p>
-        <p>Small steps every day.</p>
+    <footer class="footer">
+        <a href="#" class="brand footer-brand">
+            <span class="brand-symbol">I<span>.</span></span>
+            <span class="brand-name">IELTS<span>LIBRARY</span></span>
+        </a>
+        <p>YOUR PERSONAL ENGLISH REFERENCE BOOK</p>
+        <span class="footer-version">BUILD 2026.10</span>
     </footer>
 
-    <script src="script.js"></script>
+    <dialog id="lessonDialog" class="lesson-dialog">
+        <div class="lesson-shell">
+            <div class="lesson-topbar">
+                <a href="#" class="brand lesson-brand">
+                    <span class="brand-symbol">I<span>.</span></span>
+                    <span class="brand-name">IELTS<span>LIBRARY</span></span>
+                </a>
+                <div class="lesson-top-actions">
+                    <button class="icon-button" id="lessonBookmark" type="button" aria-label="Bookmark lesson">☆</button>
+                    <button class="icon-button" id="lessonClose" type="button" aria-label="Close lesson">✕</button>
+                </div>
+            </div>
+
+            <div class="lesson-hero">
+                <div class="eyebrow" id="lessonCategory">CATEGORY / LESSON</div>
+                <h2 id="lessonTitle">Lesson title</h2>
+                <p id="lessonDescription"></p>
+                <div class="lesson-badges">
+                    <span id="lessonLevel" class="lesson-badge">REFERENCE</span>
+                    <span id="lessonDuration" class="lesson-badge">DETAILED NOTES</span>
+                </div>
+            </div>
+
+            <div class="lesson-progress">
+                <div class="progress-label">
+                    <span>LESSON PROGRESS</span>
+                    <span id="lessonProgressText">0 / 1</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="lessonProgressFill"></div>
+                </div>
+            </div>
+
+            <div class="lesson-layout">
+                <aside class="lesson-sidebar">
+                    <span class="sidebar-heading">IN THIS LESSON</span>
+                    <nav id="lessonContents" class="lesson-contents"></nav>
+                    <button class="button button-secondary sidebar-complete" id="markComplete" type="button">○ Mark as completed</button>
+                </aside>
+                <article id="lessonBody" class="lesson-body"></article>
+            </div>
+
+            <div class="lesson-navigation">
+                <button class="button button-secondary" id="previousLesson" type="button">← Previous</button>
+                <span id="lessonPosition">LESSON 01</span>
+                <button class="button button-primary" id="nextLesson" type="button">Next lesson →</button>
+            </div>
+        </div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
